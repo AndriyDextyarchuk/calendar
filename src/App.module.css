@@ -1,0 +1,27 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 80vh;
+  max-width: 80vh;
+  max-height: 80vh;
+  background: #fff;
+}
+
+td {
+  border: #999 1px solid ;
+  width: 13%;
+}
+
+.table {
+  box-sizing: border-box;
+  width: 96%;
+  height: 91%;
+  border-collapse: collapse;
+}
+
+.tcaption {
+  background: #fff;
+  height: 5%;
+}
