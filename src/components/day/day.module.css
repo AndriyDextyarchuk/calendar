@@ -1,0 +1,47 @@
+table {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    width: 100%;
+    height: 92%;
+    border-bottom: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    border-collapse: collapse;
+    /* border-spacing: 0; */
+}
+
+thead {
+    width: 100%;
+}
+
+tbody {
+    width: 100%;
+}
+
+tbody > tr {
+    height: 30px;
+}
+
+tr {
+    display: flex;
+    width: 100%;
+    /* border: solid 1px #999; */
+}
+
+tr >td {
+    /* display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: center; */
+    width: 91%;
+    border-top: solid 1px #ccc;
+    border-left: solid 1px #ccc;
+    /* padding: 0;
+    margin: 0; */
+}
+
+.tdFirst {
+    width: 10%;
+    border-top: solid 1px #ccc;
+    border-left: solid 1px #ccc;
+}

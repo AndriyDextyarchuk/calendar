@@ -1,0 +1,47 @@
+.container{
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    min-height: 8%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+} 
+
+.nav{
+    margin-right: 10px;
+}
+
+.date {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.date > p {
+    margin: 0;
+}
+
+.switch {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* .switch > div {
+} */
+
+.switch > button {
+    display: flex;
+    justify-content: center;
+    width: 25%;
+    min-width: 50px;
+}
+/* .switch > li > button {
+    display: flex;
+    justify-content: center;
+} */

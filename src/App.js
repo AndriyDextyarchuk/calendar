@@ -1,63 +1,51 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import classes from './App.module.css';
+import Day from './components/day/day.jsx'
+import Week from './components/week/week.jsx'
+import Month from './components/month/month.jsx';
+// import Year from './components/year/year.jsx';
+import NavBar from './components/navBar/navBar.jsx';
+import {Route} from 'react-router-dom'
 
-function Month({month, year}) {
+export const DateContext = React.createContext()
 
-  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const initialState = {
+  date: {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    day: new Date().getDate(),
+  },
+  context: ['Month', 'Week', 'Day']
+}
 
-  let current = new Date(year, month)
-  let next = new Date(year, month + 1)
-  let diff = (next - current)/(1000 * 3600 * 24)
-  
-  let index = (current.getDay() + 6) % 7
-
-  const ROWS = Math.ceil((index + diff)/7);
-  const COLS =7;
-
-  let table = [], 
-      tr,
-      counter = 1 - index;
-
-  for(let i = 0; i < ROWS; i++) {
-    tr = []
-    for(let j =0; j < COLS; j++) {
-    tr.push(<td key={j}>
-              <p>{counter > 0 && counter <= diff ? counter : ''}</p>
-            </td>)
-      counter++
-    }
-    table.push(<tr key={i}>
-                 {tr}
-               </tr>)
+function dateReducer (state, action) {
+  switch (action.type) {
+    case 'incrementMonth': 
+      return {...state, month: state.month + 1};
+    case 'decrementMonth':
+      return {...state, month: state.month - 1};
+    case 'incrementDay': 
+      return {...state, day: state.day + 1};
+    case 'decrementDay':
+      return {...state, day: state.day - 1};
+    case 'reset':
+      return initialState;
+    default:
+      return state;
   }
+}
 
-  return(
-    <table className={classes.table}>
-      <caption className={classes.tcaption}>
-        {monthNames[month]} 
-        {year}
-      </caption>
-      <thead>
-        <tr>
-          <th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sut</th><th>Sun</th>
-        </tr>
-      </thead>
-      <tbody>{table}</tbody>
-    </table>
+export default function App() {
+  const [state, dispatch] = useReducer(dateReducer, initialState.date)
+  return (
+    <DateContext.Provider value={{dispatch}}>
+      <div className={classes.App}>
+        <NavBar date= {state}/>
+        <Route exact path='/' render={(props) => <Month date={state} {...props}/>}/>
+        {/* <Route path='/year' render={(props) => <Year date={state} {...props}  />}/> */}
+        <Route path='/week' render={(props) => <Week date={state} {...props}/>}/>
+        <Route path='/day' component={Day}/>
+      </div>
+    </DateContext.Provider>
   )
 }
-
-function App() {
-
-  let date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth()
-
-  return (
-    <div className={classes.App}>
-      <Month year={year} month={month}/>
-    </div>
-  );
-}
-
-export default App;

@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+.day {
+    box-sizing: border-box;
+    flex-basis: auto;
+    background: #ddd;
+    display: flex;
+    width: 15px;
+    height: 15px;
+    justify-content: flex-end;
+    padding: 5px;
+    border: solid 1px black; 
+  }
+  
+  .container {
+    border: solid 1px black; 
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+  }
