@@ -22,7 +22,7 @@ export default function Day() {
             </thead>
             <tbody>
                 {hours.map((hours) =>
-                    <tr>
+                    <tr key={hours}>
                         <td className={classes.tdFirst}>{hours}</td>
                         <td></td>
                     </tr>
