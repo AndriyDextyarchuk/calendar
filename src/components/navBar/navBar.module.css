@@ -2,14 +2,47 @@
     box-sizing: border-box;
     display: flex;
     width: 100%;
-    min-height: 8%;
     justify-content: space-between;
     align-items: center;
     padding: 7px 0;
 } 
 
-.nav{
+.nav {
+    display: flex;
+    flex-wrap: wrap;
     margin-right: 10px;
+}
+
+.nav > button {
+    padding: 0 5px;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: rgb(58, 83, 44);;
+    cursor: pointer;
+    min-width: 20px;
+    border: solid 1px transparent;
+    border-radius: 3px;
+    outline: none;
+    transition: background-color .2s linear;
+}
+
+.nav > button.active {
+    background-color: rgb(81, 102, 67);
+}
+
+.nav > button:hover {
+    background-color: rgb(81, 102, 67);
+}
+
+.nav > button:first-child {
+    border: solid 1px transparent;
+    border-radius: 3px 0 0 3px;
+}
+
+.nav > button:nth-child(2){
+    border: solid 1px transparent;
+    border-radius: 0 3px 3px 0;
 }
 
 .date {
@@ -19,7 +52,7 @@
     margin-right: 10px;
 }
 
-.date > p {
+.date > span {
     margin: 0;
 }
 
@@ -32,16 +65,18 @@
     padding: 0;
 }
 
-/* .switch > div {
-} */
 
-.switch > button {
-    display: flex;
-    justify-content: center;
-    width: 25%;
-    min-width: 50px;
+.switch > a {
+    color: #000;
+    text-decoration: none;
+    background: rgb(58, 83, 44);
+    padding: 0 5px;
+    border: solid 1px transparent;
+    border-radius: 3px;
+    transition: background-color .2s linear;
 }
-/* .switch > li > button {
-    display: flex;
-    justify-content: center;
-} */
+
+.switch > a:hover,
+.switch > a.active {
+    background-color: rgb(81, 102, 67);
+}

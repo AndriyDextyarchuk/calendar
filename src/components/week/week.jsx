@@ -1,5 +1,5 @@
 import React from 'react'
-// import classes from './week.module.css'
+import classes from './week.module.css'
 
 export const WeekContext = React.createContext()
 
@@ -14,37 +14,48 @@ export default function Week({date}) {
     ]
 
     const day = (new Date(date.year, date.month, date.day).getDay() + 6) % 7
+    const today = date.day === new Date().getDate() && date.month === new Date().getMonth() && date.year === new Date().getFullYear()
 
-    const arr = week.map((item) =>
-        <td key={item}>
-            <div>{item}&nbsp;</div>
+    const arr = week.map((item) => 
+        <div key={item} className={today && week.indexOf(item) === (new Date().getDay() + 6) % 7 ? classes.today : ''}>
+            <span>{item}&nbsp;</span>
             <div>
                 {new Date(date.year, date.month, date.day - day + week.indexOf(item)).getDate()}
                 /{new Date(date.year, date.month, date.day - day + week.indexOf(item)).getMonth() + 1}
             </div>
-        </td>
+        </div>
     )
 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <td></td>   
+        <section className={classes.table}>
+            <header>
+                <article>
+                    <span></span>   
                     {arr}
-                </tr>
-                <tr>
-                    <td>all day</td>
-                    {week.map((item) =><td key={`${item}_allDay`}></td>)}
-                </tr>
-            </thead>
-            <tbody>
-                {hours.map((hours) =>
-                    <tr key={hours}>
-                        <td>{hours}</td>
-                        {week.map((week) =><td key={`${week} ${hours}`}></td>)}
-                    </tr>
+                    <span></span>
+                </article>
+                <article>
+                    <span>all day</span>
+                    {week.map((item) => 
+                        <div key={`${item}_allDay`}
+                            className={today && week.indexOf(item) === (new Date().getDay() + 6) % 7 ? classes.today : ''}>
+                        </div>
+                    )}
+                    <span></span>
+                </article>
+            </header>
+            <main className={classes.container}>
+                {hours.map(item =>
+                    <article key={item}>
+                        <span>{item}</span>
+                        {week.map(item => 
+                            <div key={`${item} ${hours}`}
+                                className={today && week.indexOf(item) === (new Date().getDay() + 6) % 7 ? classes.today : ''}>
+                            </div>
+                        )}
+                    </article>
                 )}
-            </tbody>
-        </table>
+            </main>
+        </section>
     )
 }

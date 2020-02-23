@@ -1,7 +1,9 @@
 import React from 'react'
 import classes from './day.module.css'
 
-export default function Day() {
+export default function Day({date}) {
+    const selectedDate = new Date(date.year, date.month, date.day)
+    const sevenDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     const hours = [
         '00', '1', '2', '3', '4', '5',
         '6','7', '8', '9', '10', '11',
@@ -9,25 +11,27 @@ export default function Day() {
         '18', '19', '21','22', '23'
     ]
     return(
-        <table>
-            <thead>
-                <tr>
-                    <td className={classes.tdFirst}></td>   
-                    <td>Monday</td>
-                </tr>
-                <tr>
-                    <td className={classes.tdFirst}>all day</td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
+        <section className={classes.table}>
+            <header>
+                <article>
+                    <span></span>   
+                    <div>{sevenDays[(selectedDate.getDay() + 6) % 7]}</div>
+                    <span></span>
+                </article>
+                <article>
+                    <span>all day</span>
+                    <div></div>
+                    <span></span>
+                </article>
+            </header>
+            <main>
                 {hours.map((hours) =>
-                    <tr key={hours}>
-                        <td className={classes.tdFirst}>{hours}</td>
-                        <td></td>
-                    </tr>
+                    <article key={hours}>
+                        <span>{hours}</span>
+                        <div></div>
+                    </article>
                 )}
-            </tbody>
-        </table>
+            </main>
+        </section>
     )
 }

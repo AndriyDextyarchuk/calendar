@@ -12,11 +12,12 @@ export default function Month({date}) {
   const arr =[]
 
   for(let i = 1; i <= amountOfItems; i++) {
-   if (i > shift && i <= shift + daysOfMonth){
+    if (i > shift && i <= shift + daysOfMonth){
       const data = new Date(date.year, date.month, i - shift)
+      const today = i - shift === new Date().getDate() && date.month === new Date().getMonth() && date.year === new Date().getFullYear()
       arr.push(
         <div key={data} className={classes.day}>
-          <p>{i - shift}</p>
+          <span className={today ? classes.today : ''}>{i - shift}</span>
         </div>
       )
     } else {
@@ -28,13 +29,13 @@ export default function Month({date}) {
   
   return(
     <div className={classes.wrapper}>
-       <div className={classes.weekHeader}>
-            {week.map((item) =>
-              <div key={item} className={classes.item}>
-                {item}
-              </div>)
-            }
-        </div>
+      <div className={classes.weekHeader}>
+        {week.map((item) =>
+          <div key={item} className={classes.item}>
+            {item}
+          </div>)
+        }
+      </div>
       <div className={classes.container}>
         {arr}
       </div>

@@ -1,0 +1,67 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 85%;
+}
+
+.table > header > article,
+.table > .container > article {
+    display: flex;
+    min-height: 30px;
+}
+
+.table > header > article > span,
+.table > .container > article > span {
+    width: 9%;
+    text-align: center;
+    border-bottom: solid 1px rgba(0, 0, 0, .1) ;
+}
+
+.table > header > article > div,
+.table > .container > article > div {
+    width: 13%;
+    border-bottom: solid 1px rgba(0, 0, 0, .1) ;
+    border-left: solid 1px rgba(0, 0, 0, .1);
+    text-align: center;
+    transition: background-color .2s linear;
+}
+
+.table > header > article > div.today,
+.table > .container > article > div.today {
+    background-color: rgb(212, 212, 94);
+}
+
+.table > header > article > div > div {
+    font-size: 14px;
+    color: #333;
+}
+
+.table > header > article > span:last-child {
+    width: 2%;
+    border-bottom: none;
+}
+
+.container {
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.container > article > div:hover {
+    background-color: rgb(212, 212, 94);
+}
+
+.container::-webkit-scrollbar {
+    width: 2%;
+    
+}
+
+.container::-webkit-scrollbar-track {
+    background: rgb(81, 116, 61);
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: rgba(58, 83, 44, 0.904);
+    border-radius: 5px;
+}

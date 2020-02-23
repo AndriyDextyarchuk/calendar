@@ -62,7 +62,7 @@ export default function App() {
         <NavBar date= {state.date} buttons={state.buttons}/> 
         <Route exact path='/' render={(props) => <Month date={state.date} {...props}/>}/>
         <Route path='/week' render={(props) => <Week date={state.date} {...props}/>}/>
-        <Route path='/day' component={Day}/>
+        <Route path='/day' render={(props) => <Day date={state.date} {...props}/>}/>
       </div>
     </DateContext.Provider>
   )
